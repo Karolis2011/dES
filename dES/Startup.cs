@@ -1,4 +1,5 @@
 using dES.Data;
+using dES.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace dES
             var connectionString = Configuration.GetConnectionString("Main");
             services.AddDbContext<dESContext>(options =>
                     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            services.AddHostedService<DatabaseInitializationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
