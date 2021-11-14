@@ -19,13 +19,20 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Pagrindinis</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        <div class="w-100"></div>
+                        <partial name="_LoginPartial.cshtml">
                     </ul>
                 </div>
+                <a style="padding-left:28px;" class="d-flex flex-row text-dark align-items-center" asp-page="/ShoppingCart">
+
+                    <img src="~/shopping_cart.png" width="20" height="20" />
+                    <div style="padding-left:8px" class="d-flex flex-column align-middle">
+                        <div style="line-height:14px;font-size:14px" class="p-0 m-0"><b>Prekių</b></div>
+                        <div style="line-height:14px; font-size: 14px" class="p-0 m-0">Krepšelis</div>
+                    </div>
+                </a>
             </div>
         </nav>
     </header>
