@@ -41,9 +41,9 @@
                 </td>
 
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="/Admin/Orders/OrderTracking" asp-route-id="@item.Id">Tracking</a> |
+                    <a asp-page="/Admin/Orders/OrderInvoice" asp-route-id="@item.Id">Invoice</a> |
+                    <a asp-page="/Admin/Orders/RemoveOrder" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
