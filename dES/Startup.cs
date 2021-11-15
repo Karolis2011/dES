@@ -29,8 +29,13 @@ namespace dES
             services.AddRazorPages();
 
             var connectionString = Configuration.GetConnectionString("Main");
-            services.AddDbContext<dESContext>(options =>
-                    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            
+            var dbOptions = new DbContextOptionsBuilder<dESContext>();
+            dbOptions.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
+            services.AddSingleton(dbOptions);
+
+            services.AddDbContext<dESContext>();
 
             services.AddHostedService<DatabaseInitializationService>();
         }

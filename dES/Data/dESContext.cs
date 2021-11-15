@@ -11,6 +11,8 @@ namespace dES.Data
 {
     public class dESContext : IdentityDbContext<User>
     {
+        public dESContext() : base() { }
+
         public dESContext(DbContextOptions<dESContext> options)
             : base(options)
         {
