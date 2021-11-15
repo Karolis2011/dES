@@ -23,7 +23,6 @@
   <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Index.cshtml" />
     <Content Remove="Areas\Admin\Pages\Users\Index.cshtml" />
-    <Content Remove="Pages\Order.cshtml" />
     <Content Remove="Pages\ProductDetails.cshtml" />
     <Content Remove="Pages\ProductListing.cshtml" />
     <Content Remove="Pages\ShoppingCart.cshtml" />
@@ -32,7 +31,6 @@
   <ItemGroup>
     <Watch Remove="Areas\Admin\Pages\Index.cshtml" />
     <Watch Remove="Areas\Admin\Pages\Users\Index.cshtml" />
-    <Watch Remove="Pages\Order.cshtml" />
     <Watch Remove="Pages\ProductDetails.cshtml" />
     <Watch Remove="Pages\ProductListing.cshtml" />
     <Watch Remove="Pages\Shared\_AdminLayout.cshtml" />
@@ -54,7 +52,6 @@
     <None Include="Areas\Admin\Pages\Products\Edit.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Index.cshtml" />
     <None Include="Areas\Admin\Pages\Users\Index.cshtml" />
-    <None Include="Pages\Order.cshtml" />
     <None Include="Pages\ProductDetails.cshtml" />
     <None Include="Pages\ProductListing.cshtml" />
     <None Include="Pages\ShoppingCart.cshtml" />
