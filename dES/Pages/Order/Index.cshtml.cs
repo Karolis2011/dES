@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace dES.Pages.Order
 {
-    public class OrderModel : PageModel
+    public class IndexModel : PageModel
     {
         public void OnGet()
         {

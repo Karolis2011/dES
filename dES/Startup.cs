@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//Karoli padaryk kad order tik registruotiem;
+//Karoli padaryk kad order tik registruotiem, prie krepselio prijunk apmoketi nuoroda i Pages/Order/OrderPayment
 namespace dES
 {
     public class Startup
