@@ -3,7 +3,7 @@
 @{
 }
 <div class="text-center">
-    <h1 class="display-4">Order List</h1>
+    <h1 class="display-4">Užsakymų sarašas</h1>
 </div>
 <table class="table">
     <thead>
@@ -41,9 +41,9 @@
             </td>
 
             <td>
-                <a asp-page="./OrderInvoice" asp-route-id="@item.Id">Invoice</a> |
-                <a asp-page="./Index" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./RemoveOrder" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./OrderInvoice" asp-route-id="@item.Id">Sąskaita faktūra</a> |
+                <a asp-page="./Index" asp-route-id="@item.Id">Dėtalės</a> |
+                <a asp-page="./RemoveOrder" asp-route-id="@item.Id">Ištrinti</a>
             </td>
         </tr>
         }
