@@ -45,13 +45,16 @@ namespace dES.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name ="Vartotojo vardas")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Slaptažodis")]
+
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Prisiminti mane")]
             public bool RememberMe { get; set; }
         }
 
