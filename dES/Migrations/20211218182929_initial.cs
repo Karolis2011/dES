@@ -488,69 +488,6 @@ namespace dES.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.InsertData(
-                table: "Brands",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Dell" },
-                    { 2, "HP" },
-                    { 3, "Apple" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "OperatingSystems",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Linux" },
-                    { 2, "Window 10" },
-                    { 3, "macOS" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Processors",
-                columns: new[] { "Id", "Cores", "Frequency", "Name" },
-                values: new object[,]
-                {
-                    { 2, 12, "3.6ghz", "AMD ryzen 9" },
-                    { 3, 12, "4.8ghz", "Intel Core i9-9900K" },
-                    { 1, 4, "3ghz", "Intel core i7 9530" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "RAMs",
-                columns: new[] { "Id", "Frequency", "MemoryCapacity" },
-                values: new object[,]
-                {
-                    { 8, "1600MHz", "8gb" },
-                    { 1, "2400MHz", "16gb" },
-                    { 2, "2400MHz", "8gb" },
-                    { 3, "2400MHz", "4gb" },
-                    { 4, "2133MHz", "16gb" },
-                    { 5, "2133MHz", "8gb" },
-                    { 6, "2133MHz", "4gb" },
-                    { 7, "1600MHz", "16gb" },
-                    { 9, "1600MHz", "4gb" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Laptops",
-                columns: new[] { "Id", "BrandId", "OSId", "ProcessorId", "ProductId", "RAMId" },
-                values: new object[,]
-                {
-                    { 3, 2, 1, 3, null, 1 },
-                    { 9, 1, 3, 1, null, 1 },
-                    { 6, 2, 3, 1, null, 2 },
-                    { 5, 2, 2, 1, null, 3 },
-                    { 8, 1, 3, 3, null, 3 },
-                    { 1, 1, 1, 2, null, 4 },
-                    { 2, 1, 2, 1, null, 4 },
-                    { 7, 2, 3, 3, null, 6 },
-                    { 4, 3, 2, 3, null, 7 },
-                    { 10, 1, 1, 1, null, 9 }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",
                 table: "Addresses",

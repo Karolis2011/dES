@@ -9,7 +9,7 @@ using dES.Data;
 namespace dES.Migrations
 {
     [DbContext(typeof(dESContext))]
-    [Migration("20211218174837_initial")]
+    [Migration("20211218182929_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,23 +215,6 @@ namespace dES.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Dell"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "HP"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Apple"
-                        });
                 });
 
             modelBuilder.Entity("dES.Data.Model.Image", b =>
@@ -282,88 +265,6 @@ namespace dES.Migrations
                     b.HasIndex("RAMId");
 
                     b.ToTable("Laptops");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrandId = 1,
-                            OSId = 1,
-                            ProcessorId = 2,
-                            RAMId = 4
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandId = 1,
-                            OSId = 2,
-                            ProcessorId = 1,
-                            RAMId = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BrandId = 2,
-                            OSId = 1,
-                            ProcessorId = 3,
-                            RAMId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BrandId = 3,
-                            OSId = 2,
-                            ProcessorId = 3,
-                            RAMId = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BrandId = 2,
-                            OSId = 2,
-                            ProcessorId = 1,
-                            RAMId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BrandId = 2,
-                            OSId = 3,
-                            ProcessorId = 1,
-                            RAMId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BrandId = 2,
-                            OSId = 3,
-                            ProcessorId = 3,
-                            RAMId = 6
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BrandId = 1,
-                            OSId = 3,
-                            ProcessorId = 3,
-                            RAMId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BrandId = 1,
-                            OSId = 3,
-                            ProcessorId = 1,
-                            RAMId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BrandId = 1,
-                            OSId = 1,
-                            ProcessorId = 1,
-                            RAMId = 9
-                        });
                 });
 
             modelBuilder.Entity("dES.Data.Model.OperatingSystem", b =>
@@ -379,23 +280,6 @@ namespace dES.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OperatingSystems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Linux"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Window 10"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "macOS"
-                        });
                 });
 
             modelBuilder.Entity("dES.Data.Model.Order", b =>
@@ -463,29 +347,6 @@ namespace dES.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Processors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Cores = 4,
-                            Frequency = "3ghz",
-                            Name = "Intel core i7 9530"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Cores = 12,
-                            Frequency = "3.6ghz",
-                            Name = "AMD ryzen 9"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Cores = 12,
-                            Frequency = "4.8ghz",
-                            Name = "Intel Core i9-9900K"
-                        });
                 });
 
             modelBuilder.Entity("dES.Data.Model.Product", b =>
@@ -572,62 +433,6 @@ namespace dES.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RAMs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Frequency = "2400MHz",
-                            MemoryCapacity = "16gb"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Frequency = "2400MHz",
-                            MemoryCapacity = "8gb"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Frequency = "2400MHz",
-                            MemoryCapacity = "4gb"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Frequency = "2133MHz",
-                            MemoryCapacity = "16gb"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Frequency = "2133MHz",
-                            MemoryCapacity = "8gb"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Frequency = "2133MHz",
-                            MemoryCapacity = "4gb"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Frequency = "1600MHz",
-                            MemoryCapacity = "16gb"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Frequency = "1600MHz",
-                            MemoryCapacity = "8gb"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Frequency = "1600MHz",
-                            MemoryCapacity = "4gb"
-                        });
                 });
 
             modelBuilder.Entity("dES.Data.Model.User", b =>
