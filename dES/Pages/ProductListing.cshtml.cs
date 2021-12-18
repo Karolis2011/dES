@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using dES.Data.Model;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace dES.Pages
 {
-    public class ProductListingModel : PageModel
-    {
-        public void OnGet()
-        {
-        }
-    }
+    //public Laptop[] Laptops { get; set; }
+    //public class ProductListingModel : PageModel
+    //{
+    //    public void OnGet()
+    //    {
+    //        Laptops = 
+    //    }
+    //}
 }

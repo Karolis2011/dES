@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace dES.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,6 +130,24 @@ namespace dES.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Processors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Frequency = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cores = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Processors", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -144,6 +162,23 @@ namespace dES.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "RAMs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    MemoryCapacity = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Frequency = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RAMs", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -327,43 +362,6 @@ namespace dES.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Laptop",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OSId = table.Column<int>(type: "int", nullable: false),
-                    BrandId = table.Column<int>(type: "int", nullable: false),
-                    ProccessorId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Laptop", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Laptop_Brands_BrandId",
-                        column: x => x.BrandId,
-                        principalTable: "Brands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Laptop_OperatingSystems_OSId",
-                        column: x => x.OSId,
-                        principalTable: "OperatingSystems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Laptop_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "ProductReviews",
                 columns: table => new
                 {
@@ -396,6 +394,54 @@ namespace dES.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Laptops",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    OSId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
+                    ProcessorId = table.Column<int>(type: "int", nullable: false),
+                    RAMId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Laptops", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Laptops_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Laptops_OperatingSystems_OSId",
+                        column: x => x.OSId,
+                        principalTable: "OperatingSystems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Laptops_Processors_ProcessorId",
+                        column: x => x.ProcessorId,
+                        principalTable: "Processors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Laptops_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Laptops_RAMs_RAMId",
+                        column: x => x.RAMId,
+                        principalTable: "RAMs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "OrderPayments",
                 columns: table => new
                 {
@@ -418,7 +464,7 @@ namespace dES.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ProductOrder",
+                name: "ProductsOrders",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
@@ -426,68 +472,17 @@ namespace dES.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductOrder", x => new { x.OrderId, x.ProductId });
+                    table.PrimaryKey("PK_ProductsOrders", x => new { x.OrderId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_ProductOrder_Orders_OrderId",
+                        name: "FK_ProductsOrders_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductOrder_Products_ProductId",
+                        name: "FK_ProductsOrders_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Processors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Frequency = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cores = table.Column<int>(type: "int", nullable: false),
-                    LaptopId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Processors", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Processors_Laptop_LaptopId",
-                        column: x => x.LaptopId,
-                        principalTable: "Laptop",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "RAMs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    MemoryCapacity = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Frequency = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LaptopId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RAMs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RAMs_Laptop_LaptopId",
-                        column: x => x.LaptopId,
-                        principalTable: "Laptop",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -536,19 +531,29 @@ namespace dES.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laptop_BrandId",
-                table: "Laptop",
+                name: "IX_Laptops_BrandId",
+                table: "Laptops",
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laptop_OSId",
-                table: "Laptop",
+                name: "IX_Laptops_OSId",
+                table: "Laptops",
                 column: "OSId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laptop_ProductId",
-                table: "Laptop",
+                name: "IX_Laptops_ProcessorId",
+                table: "Laptops",
+                column: "ProcessorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Laptops_ProductId",
+                table: "Laptops",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Laptops_RAMId",
+                table: "Laptops",
+                column: "RAMId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderPayments_OrderId",
@@ -561,17 +566,6 @@ namespace dES.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Processors_LaptopId",
-                table: "Processors",
-                column: "LaptopId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrder_ProductId",
-                table: "ProductOrder",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductReviews_ProductId",
                 table: "ProductReviews",
                 column: "ProductId");
@@ -582,9 +576,9 @@ namespace dES.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RAMs_LaptopId",
-                table: "RAMs",
-                column: "LaptopId");
+                name: "IX_ProductsOrders_ProductId",
+                table: "ProductsOrders",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -614,31 +608,19 @@ namespace dES.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
+                name: "Laptops");
+
+            migrationBuilder.DropTable(
                 name: "OrderPayments");
-
-            migrationBuilder.DropTable(
-                name: "Processors");
-
-            migrationBuilder.DropTable(
-                name: "ProductOrder");
 
             migrationBuilder.DropTable(
                 name: "ProductReviews");
 
             migrationBuilder.DropTable(
-                name: "RAMs");
+                name: "ProductsOrders");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Laptop");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -647,7 +629,19 @@ namespace dES.Migrations
                 name: "OperatingSystems");
 
             migrationBuilder.DropTable(
+                name: "Processors");
+
+            migrationBuilder.DropTable(
+                name: "RAMs");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
+
+            migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }
