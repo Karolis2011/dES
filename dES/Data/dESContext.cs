@@ -6,6 +6,7 @@ using dES.Data.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OperatingSystem = dES.Data.Model.OperatingSystem;
 
 namespace dES.Data
 {
@@ -37,21 +38,29 @@ namespace dES.Data
                 .HasKey(po => new { po.OrderId, po.ProductId });
 
             builder.Entity<RAM>()
-                .HasOne(r => r.Laptop)
-                .WithMany(l => l.RAMs);
+                .HasMany(r => r.Laptops)
+                .WithOne(l => l.RAM);
+
+            //builder.Entity<Laptop>()
+            //    .HasOne(l => l.Product)
+            //    .WithMany(p => p.Laptops);
+
+
         }
+
+
 
         public DbSet<ActionInformation> ActionInformation { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Image> Images { get; set; }
-        public DbSet<Laptop> Laptop { get; set; }
+        public DbSet<Laptop> Laptops { get; set; }
         public DbSet<Model.OperatingSystem> OperatingSystems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderPayment> OrderPayments { get; set; }
         public DbSet<Processor> Processors { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductOrder> ProductOrder { get; set; }
+        public DbSet<ProductOrder> ProductsOrders { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<RAM> RAMs { get; set; }
     }
