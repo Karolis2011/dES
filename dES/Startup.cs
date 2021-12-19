@@ -1,8 +1,10 @@
 using dES.Data;
+using dES.Data.Model;
 using dES.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +29,9 @@ namespace dES
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+           
+            
 
             var connectionString = Configuration.GetConnectionString("Main");
             
@@ -59,6 +64,7 @@ namespace dES
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

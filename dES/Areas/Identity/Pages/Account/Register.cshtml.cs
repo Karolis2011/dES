@@ -48,7 +48,7 @@ namespace dES.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Vartotojo vardas")]
+            [Display(Name = "El. paštas")]
             public string Email { get; set; }
 
             [Required]
