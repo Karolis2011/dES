@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
@@ -25,6 +26,7 @@
     <Content Remove="Areas\Admin\Pages\Users\Index.cshtml" />
     <Content Remove="Pages\ProductDetails.cshtml" />
     <Content Remove="Pages\ProductListing.cshtml" />
+    <Content Remove="Pages\Shared\_ShoppingCart.cshtml" />
     <Content Remove="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 
@@ -34,6 +36,7 @@
     <Watch Remove="Pages\ProductDetails.cshtml" />
     <Watch Remove="Pages\ProductListing.cshtml" />
     <Watch Remove="Pages\Shared\_AdminLayout.cshtml" />
+    <Watch Remove="Pages\Shared\_ShoppingCart.cshtml" />
     <Watch Remove="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 
@@ -54,6 +57,7 @@
     <None Include="Areas\Admin\Pages\Users\Index.cshtml" />
     <None Include="Pages\ProductDetails.cshtml" />
     <None Include="Pages\ProductListing.cshtml" />
+    <None Include="Pages\Shared\_ShoppingCart.cshtml" />
     <None Include="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 

@@ -124,7 +124,6 @@ namespace dES.Services
             await dataContext.Brands.AddRangeAsync(brands);
             await dataContext.Processors.AddRangeAsync(proc);
             await dataContext.Laptops.AddRangeAsync(laptops);
-            await dataContext.SaveChangesAsync();
             await dataContext.Products.AddRangeAsync(products);
 
             await dataContext.SaveChangesAsync();
@@ -144,7 +143,8 @@ namespace dES.Services
                     Id = i + 1,
                     Price = price,
                     Name = names[i],
-                    LaptopId = laptops[i].Id
+                    LaptopId = laptops[i].Id,
+                    Recommendation = 0
                 };
             }
             return products;
