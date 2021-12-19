@@ -124,7 +124,6 @@ namespace dES.Services
             await dataContext.Brands.AddRangeAsync(brands);
             await dataContext.Processors.AddRangeAsync(proc);
             await dataContext.Laptops.AddRangeAsync(laptops);
-            await dataContext.SaveChangesAsync();
             await dataContext.Products.AddRangeAsync(products);
 
             await dataContext.SaveChangesAsync();

@@ -6,6 +6,8 @@ namespace dES.Data.Model
     public class Product
     {
         public virtual int Id { get; set; }
+
+        public virtual int Recommendation { get; set; }
         public virtual double Price {get;set;}
         public virtual bool Recommendation {get;set;}
 
