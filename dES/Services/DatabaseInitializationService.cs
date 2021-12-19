@@ -144,7 +144,7 @@ namespace dES.Services
                     Price = price,
                     Name = names[i],
                     LaptopId = laptops[i].Id,
-                    Recommendation = 0
+                    Recommendation = true
                 };
             }
             return products;

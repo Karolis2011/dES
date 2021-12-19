@@ -22,7 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Home\**" />
+    <Content Remove="Pages\Home\**" />
+    <EmbeddedResource Remove="Pages\Home\**" />
+    <None Remove="Pages\Home\**" />
+    <Watch Remove="Pages\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Index.cshtml" />
+    <Content Remove="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <Content Remove="Areas\Admin\Pages\Users\Index.cshtml" />
     <Content Remove="Pages\ProductDetails.cshtml" />
     <Content Remove="Pages\ProductListing.cshtml" />
@@ -32,6 +41,7 @@
 
   <ItemGroup>
     <Watch Remove="Areas\Admin\Pages\Index.cshtml" />
+    <Watch Remove="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <Watch Remove="Areas\Admin\Pages\Users\Index.cshtml" />
     <Watch Remove="Pages\ProductDetails.cshtml" />
     <Watch Remove="Pages\ProductListing.cshtml" />
@@ -41,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Home\" />
     <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
@@ -52,6 +61,7 @@
     <None Include="Areas\Admin\Pages\Products\Create.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Delete.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Edit.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Index.cshtml" />
     <None Include="Areas\Admin\Pages\Users\Index.cshtml" />
