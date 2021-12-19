@@ -156,8 +156,9 @@ namespace dES.Migrations
                     Price = table.Column<double>(type: "double", nullable: false),
                     Description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LaptopId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -403,7 +404,8 @@ namespace dES.Migrations
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     ProcessorId = table.Column<int>(type: "int", nullable: false),
                     RAMId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    ProductId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -427,8 +429,8 @@ namespace dES.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Laptops_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_Laptops_Products_ProductId1",
+                        column: x => x.ProductId1,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -546,9 +548,9 @@ namespace dES.Migrations
                 column: "ProcessorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Laptops_ProductId",
+                name: "IX_Laptops_ProductId1",
                 table: "Laptops",
-                column: "ProductId");
+                column: "ProductId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Laptops_RAMId",

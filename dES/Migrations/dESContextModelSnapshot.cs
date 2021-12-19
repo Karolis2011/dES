@@ -247,6 +247,9 @@ namespace dES.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("int");
+
                     b.Property<int>("RAMId")
                         .HasColumnType("int");
 
@@ -258,7 +261,7 @@ namespace dES.Migrations
 
                     b.HasIndex("ProcessorId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId1");
 
                     b.HasIndex("RAMId");
 
@@ -356,10 +359,12 @@ namespace dES.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("LaptopId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
@@ -585,9 +590,9 @@ namespace dES.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("dES.Data.Model.Product", null)
-                        .WithMany("Laptops")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("dES.Data.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId1");
 
                     b.HasOne("dES.Data.Model.RAM", "RAM")
                         .WithMany("Laptops")
@@ -600,6 +605,8 @@ namespace dES.Migrations
                     b.Navigation("OS");
 
                     b.Navigation("Processor");
+
+                    b.Navigation("Product");
 
                     b.Navigation("RAM");
                 });
@@ -671,8 +678,6 @@ namespace dES.Migrations
 
             modelBuilder.Entity("dES.Data.Model.Product", b =>
                 {
-                    b.Navigation("Laptops");
-
                     b.Navigation("ProductOrders");
 
                     b.Navigation("Reviews");
