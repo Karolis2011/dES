@@ -10,20 +10,20 @@ using dES.Data.Model;
 
 namespace dES.Areas.Admin.Pages.Priducts
 {
-    public class IndexModel : PageModel
+    public class ShowRecommendations : PageModel
     {
         private readonly dES.Data.dESContext _context;
 
-        public IndexModel(dES.Data.dESContext context)
+        public ShowRecommendations(dES.Data.dESContext context)
         {
             _context = context;
         }
 
         public IList<Product> Product { get;set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Product = _context.Products.ToList();
+            Product = await _context.Products.ToListAsync();
         }
     }
 }

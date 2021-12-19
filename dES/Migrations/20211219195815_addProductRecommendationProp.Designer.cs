@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dES.Data;
 
 namespace dES.Migrations
 {
     [DbContext(typeof(dESContext))]
-    partial class dESContextModelSnapshot : ModelSnapshot
+    [Migration("20211219195815_addProductRecommendationProp")]
+    partial class addProductRecommendationProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
