@@ -6,6 +6,25 @@
     <title>@ViewData["Title"] - dES</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .cart-badge {
+            top: 0px;
+            right: 20px;
+            position:absolute;
+            color: #fff;
+            background-color: #f34e46;
+            padding: .25em .4em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            width: min-content;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -25,12 +44,13 @@
                         <partial name="_LoginPartial.cshtml">
                     </ul>
                 </div>
-                <a style="padding-left:28px;" class="d-flex flex-row text-dark align-items-center" asp-page="/ShoppingCart">
+                <a style="padding:0 28px;padding-top:3px;position: relative" class="d-flex flex-row text-dark align-items-center" asp-page="/ShoppingCart">
 
                     <img src="~/shopping_cart.png" width="20" height="20" />
                     <div style="padding-left:8px" class="d-flex flex-column align-middle">
                         <div style="line-height:14px;font-size:14px" class="p-0 m-0"><b>Prekių</b></div>
                         <div style="line-height:14px; font-size: 14px" class="p-0 m-0">Krepšelis</div>
+                        <div class="cart-badge">0</div>
                     </div>
                 </a>
             </div>
