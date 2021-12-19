@@ -7,6 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
 using dES.Data.Model;
 using OperatingSystem = dES.Data.Model.OperatingSystem;
 
@@ -116,15 +117,37 @@ namespace dES.Services
            };
             var rams = generateRAMs();
             Laptop[] laptops = generateLaptops(10, OS, brands, proc, rams);
+            Product[] products = generateProducts(laptops);
 
             await dataContext.RAMs.AddRangeAsync(rams);
             await dataContext.OperatingSystems.AddRangeAsync(OS);
             await dataContext.Brands.AddRangeAsync(brands);
             await dataContext.Processors.AddRangeAsync(proc);
             await dataContext.Laptops.AddRangeAsync(laptops);
+            await dataContext.SaveChangesAsync();
+            await dataContext.Products.AddRangeAsync(products);
 
+            await dataContext.SaveChangesAsync();
 
             return;
+        }
+        private Product[] generateProducts(Laptop[] laptops)
+        {
+            string[] names = new string[] { "inspiron 17500", "inspiron 16400", "Legion vevua 321", "Legion rem Gaming", "Yoga 7i", "Pavilion", "Ideapad" };
+            var rand = new Random();
+            Product[] products = new Product[names.Length];
+            for (int i = 0; i < names.Length && i < laptops.Length; i++)
+            {
+                int price = rand.Next(800, 2100);
+                products[i] = new Product
+                {
+                    Id = i + 1,
+                    Price = price,
+                    Name = names[i],
+                    LaptopId = laptops[i].Id
+                };
+            }
+            return products;
         }
         private RAM[] generateRAMs()
         {
@@ -149,7 +172,7 @@ namespace dES.Services
             return rams;
         }
         private Laptop[] generateLaptops(int count,
-Data.Model.OperatingSystem[] OS, Brand[] brands, Processor[] proc, RAM[] rams)
+OperatingSystem[] OS, Brand[] brands, Processor[] proc, RAM[] rams)
         {
             Laptop[] laptops = new Laptop[count];
             var rand = new Random();
