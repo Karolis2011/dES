@@ -9,7 +9,7 @@ using dES.Data;
 namespace dES.Migrations
 {
     [DbContext(typeof(dESContext))]
-    [Migration("20211219193611_initial")]
+    [Migration("20211220113717_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
