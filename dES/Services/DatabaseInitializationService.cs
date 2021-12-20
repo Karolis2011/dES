@@ -143,7 +143,8 @@ namespace dES.Services
                     Id = i + 1,
                     Price = price,
                     Name = names[i],
-                    LaptopId = laptops[i].Id
+                    LaptopId = laptops[i].Id,
+                    Recommendation = true
                 };
             }
             return products;

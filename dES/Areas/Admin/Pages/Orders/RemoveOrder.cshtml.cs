@@ -48,6 +48,8 @@ namespace dES.Areas.Admin.Pages.Orders
             }
 
             return RedirectToPage("./Index");
+        public void OnGet()
+        {
         }
     }
 }

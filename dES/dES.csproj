@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
@@ -21,19 +22,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Home\**" />
+    <Content Remove="Pages\Home\**" />
+    <EmbeddedResource Remove="Pages\Home\**" />
+    <None Remove="Pages\Home\**" />
+    <Watch Remove="Pages\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\Admin\Pages\Index.cshtml" />
+    <Content Remove="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <Content Remove="Areas\Admin\Pages\Users\Index.cshtml" />
     <Content Remove="Pages\ProductDetails.cshtml" />
     <Content Remove="Pages\ProductListing.cshtml" />
+    <Content Remove="Pages\Shared\_ShoppingCart.cshtml" />
     <Content Remove="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <Watch Remove="Areas\Admin\Pages\Index.cshtml" />
+    <Watch Remove="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <Watch Remove="Areas\Admin\Pages\Users\Index.cshtml" />
     <Watch Remove="Pages\ProductDetails.cshtml" />
     <Watch Remove="Pages\ProductListing.cshtml" />
     <Watch Remove="Pages\Shared\_AdminLayout.cshtml" />
+    <Watch Remove="Pages\Shared\_ShoppingCart.cshtml" />
     <Watch Remove="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 
@@ -49,11 +62,13 @@
     <None Include="Areas\Admin\Pages\Products\Create.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Delete.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Details.cshtml" />
+    <None Include="Areas\Admin\Pages\Products\ShowRecommendations.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Edit.cshtml" />
     <None Include="Areas\Admin\Pages\Products\Index.cshtml" />
     <None Include="Areas\Admin\Pages\Users\Index.cshtml" />
     <None Include="Pages\ProductDetails.cshtml" />
     <None Include="Pages\ProductListing.cshtml" />
+    <None Include="Pages\Shared\_ShoppingCart.cshtml" />
     <None Include="Pages\ShoppingCart.cshtml" />
   </ItemGroup>
 

@@ -9,15 +9,15 @@ using dES.Data;
 namespace dES.Migrations
 {
     [DbContext(typeof(dESContext))]
-    [Migration("20211112211520_Initial")]
-    partial class Initial
+    [Migration("20211219192649_recommendation")]
+    partial class recommendation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.11");
+                .HasAnnotation("ProductVersion", "5.0.12");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -240,17 +240,19 @@ namespace dES.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
-
                     b.Property<int>("OSId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProccessorId")
+                    b.Property<int>("ProcessorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RAMId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -259,9 +261,13 @@ namespace dES.Migrations
 
                     b.HasIndex("OSId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProcessorId");
 
-                    b.ToTable("Laptop");
+                    b.HasIndex("ProductId1");
+
+                    b.HasIndex("RAMId");
+
+                    b.ToTable("Laptops");
                 });
 
             modelBuilder.Entity("dES.Data.Model.OperatingSystem", b =>
@@ -336,18 +342,12 @@ namespace dES.Migrations
                     b.Property<string>("Frequency")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("LaptopId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LaptopId")
-                        .IsUnique();
 
                     b.ToTable("Processors");
                 });
@@ -361,13 +361,18 @@ namespace dES.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("LaptopId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
+
+                    b.Property<int>("Recommendation")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -386,7 +391,7 @@ namespace dES.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductOrder");
+                    b.ToTable("ProductsOrders");
                 });
 
             modelBuilder.Entity("dES.Data.Model.ProductReview", b =>
@@ -429,20 +434,11 @@ namespace dES.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("LaptopId")
-                        .HasColumnType("int");
-
                     b.Property<string>("MemoryCapacity")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("LaptopId");
 
                     b.ToTable("RAMs");
                 });
@@ -593,9 +589,19 @@ namespace dES.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("dES.Data.Model.Processor", "Processor")
+                        .WithMany()
+                        .HasForeignKey("ProcessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("dES.Data.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId1");
+
+                    b.HasOne("dES.Data.Model.RAM", "RAM")
                         .WithMany("Laptops")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("RAMId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -603,7 +609,11 @@ namespace dES.Migrations
 
                     b.Navigation("OS");
 
+                    b.Navigation("Processor");
+
                     b.Navigation("Product");
+
+                    b.Navigation("RAM");
                 });
 
             modelBuilder.Entity("dES.Data.Model.Order", b =>
@@ -626,17 +636,6 @@ namespace dES.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("dES.Data.Model.Processor", b =>
-                {
-                    b.HasOne("dES.Data.Model.Laptop", "Laptop")
-                        .WithOne("Proccesor")
-                        .HasForeignKey("dES.Data.Model.Processor", "LaptopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Laptop");
                 });
 
             modelBuilder.Entity("dES.Data.Model.ProductOrder", b =>
@@ -675,24 +674,6 @@ namespace dES.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("dES.Data.Model.RAM", b =>
-                {
-                    b.HasOne("dES.Data.Model.Laptop", "Laptop")
-                        .WithMany("RAMs")
-                        .HasForeignKey("LaptopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Laptop");
-                });
-
-            modelBuilder.Entity("dES.Data.Model.Laptop", b =>
-                {
-                    b.Navigation("Proccesor");
-
-                    b.Navigation("RAMs");
-                });
-
             modelBuilder.Entity("dES.Data.Model.Order", b =>
                 {
                     b.Navigation("Payments");
@@ -702,11 +683,14 @@ namespace dES.Migrations
 
             modelBuilder.Entity("dES.Data.Model.Product", b =>
                 {
-                    b.Navigation("Laptops");
-
                     b.Navigation("ProductOrders");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("dES.Data.Model.RAM", b =>
+                {
+                    b.Navigation("Laptops");
                 });
 
             modelBuilder.Entity("dES.Data.Model.User", b =>
