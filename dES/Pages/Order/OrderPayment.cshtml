@@ -2,8 +2,39 @@
 @model dES.Pages.Order.OrderPaymentModel
 @{
 }
+@{
+    ViewData["Title"] = "OrderPayment";
+}
 <div class="text-center">
     <h1 class="display-4">Mokėjimo detales</h1>
 </div>
-<a class="nav-link text-dark" asp-area="" asp-page="/Order/OrderInvoice">Priimti</a>
-<a class="nav-link text-dark" asp-area="" asp-page="/Index">Atmesti</a>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Payment.Ammount" class="control-label"></label>
+                <input asp-for="Payment.Ammount" class="form-control" />
+                <span asp-validation-for="Payment.Ammount" class="text-danger"></span>
+            </div>
+            <div>
+                <select asp-for="Payment.Method" class="form-control" asp-items="@Html.GetEnumSelectList<OrderPaymentModel.PaymentMethod>()"></select>
+                <span asp-validation-for="Payment.Method" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payment.OrderId" class="control-label"></label>
+                <input asp-for="Payment.OrderId" class="form-control" />
+                <span asp-validation-for="Payment.OrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-page="OrderList">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

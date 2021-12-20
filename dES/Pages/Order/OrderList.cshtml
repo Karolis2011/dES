@@ -1,51 +1,64 @@
 ﻿@page
 @model dES.Pages.Order.OrderListModel
-@{
-}
-<div class="text-center">
-    <h1 class="display-4">Užsakymų sarašas</h1>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Order[0].Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order[0].CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order[0].State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order[0].UserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Order)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
+@{@using Microsoft.AspNetCore.Identity}
+@inject SignInManager<dES.Data.Model.User> SignInManager
+@inject UserManager<dES.Data.Model.User> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1 class="display-4">Užsakymų sarašas</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order[0].UserId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Order.Where(o => o.UserId == UserManager.GetUserId(User)))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.State)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
 
-            <td>
-                <a asp-page="./OrderInvoice" asp-route-id="@item.Id">Sąskaita faktūra</a> |
-                <a asp-page="./Index" asp-route-id="@item.Id">Dėtalės</a> |
-                <a asp-page="./RemoveOrder" asp-route-id="@item.Id">Ištrinti</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                    <td>
+                        <a asp-page="./OrderInvoice" asp-route-orderID="@item.Id">Sąskaita faktūra</a> |
+                        <a href="https://t.17track.net/en#nums=@item.Id">Trackingas</a> |
+                        <a asp-page="./RemoveOrder" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Registracija</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Prisijungimas</a>
+    </li>
+}

@@ -37,6 +37,7 @@ namespace dES
             
             var dbOptions = new DbContextOptionsBuilder<dESContext>();
             dbOptions.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
             services.AddSingleton(dbOptions);
 
             services.AddDbContext<dESContext>();

@@ -14,14 +14,12 @@ namespace dES.Pages
         public readonly dESContext context;
         public Product Product { get; set; }
         public string Title { get; set; }
-
+        
         public ProductDetailsModel(dESContext context)
         {
             this.context = context;
 
         }
-
-
 
         public void OnGet(string productId, string title)
         {

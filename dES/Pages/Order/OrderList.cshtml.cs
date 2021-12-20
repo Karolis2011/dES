@@ -25,5 +25,18 @@ namespace dES.Pages.Order
         {
             Order = await _context.Orders.ToListAsync();
         }
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var Order = await _context.Orders.FindAsync(id);
+            if (Order == null)
+            {
+                return NotFound();
+
+            }
+            _context.Orders.Remove(Order);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("OrderList");
+        }
     }
 }

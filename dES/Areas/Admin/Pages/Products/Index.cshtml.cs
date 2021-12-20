@@ -21,9 +21,9 @@ namespace dES.Areas.Admin.Pages.Priducts
 
         public IList<Product> Product { get;set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Product = _context.Products.ToList();
+            Product = await _context.Products.ToListAsync();
         }
     }
 }

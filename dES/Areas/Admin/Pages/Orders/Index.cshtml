@@ -15,7 +15,7 @@
                 @Html.DisplayNameFor(model => model.Order[0].State)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order[0].UserId)
+                @Html.DisplayNameFor(model => model.Order[0]. UserId)
             </th>
             <th></th>
         </tr>
@@ -38,9 +38,7 @@
                 </td>
 
                 <td>
-                    <a asp-page="/Admin/Orders/OrderTracking" asp-route-id="@item.Id">Tracking</a> |
-                    <a asp-page="/Admin/Orders/OrderInvoice" asp-route-id="@item.Id">Invoice</a> |
-                    <a asp-page="/Admin/Orders/RemoveOrder" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="./RemoveOrder" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

@@ -2,8 +2,8 @@
 @model dES.Pages.Order.RemoveOrderModel
 @{
 }
-<div class="text-center">
-    <h1 class="display-4">Pašalinti užsakyma</h1>
-</div>
-<a class="nav-link text-dark" asp-area="" asp-page="/Index">Priimti</a>
-<a class="nav-link text-dark" asp-area="" asp-page="/Index">Atmesti</a>
+<form method="post">
+    <input type="hidden" asp-for="Order.Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-page="./OrderList">Back to List</a>
+</form>
