@@ -1,0 +1,30 @@
+﻿@page
+@model dES.Pages.ShoppingCartModel
+@{
+}
+<h2>Prekių Krepšelis</h2>
+<div class="CartContainer">
+    <div class="Cart-Items">
+        <div class="image-box">
+            <img src="~/assets/pc_1.png" style={{ height="80px" }} />
+        </div>
+        <a asp-page="/ProductDetails"> DELL Inspiron 3453 ULTRA HD  </a>
+        <div class="counter">
+            <div class="inc_dec">-</div>
+            <div class="count">1</div>
+            <div class="inc_dec">+</div>
+        </div>
+        <div class="prices">
+            <div class="amount">€ 1503.99</div>
+        </div>
+    </div>
+    <hr>
+    <div class="checkout">
+        <div class="total">
+            <div class="Subtotal">Užsakymo suma:</div>
+            <div class="total-amount">€ 1503.99</div>
+
+        </div>
+        <a asp-page="/Order/OrderPayment" asp-route-ID="1" class="btn btn-primary btn-lg btn-block">Tęsti</a>
+    </div>
+</div>

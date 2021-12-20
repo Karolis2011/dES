@@ -1,0 +1,24 @@
+﻿@page
+@model ProductListingModel
+
+<body style="background-color:#f5f5f5">
+    <div class="container">
+        <center style="margin-top:20px;margin-bottom:30px;"><h2 class="justify-content-center"> Laptopai namams</h2></center>
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class=".col-md-3">
+                    <a asp-page="/ProductDetails" asp-all-route-data=@Model.GetRouteData(product, Model) class="card text-dark" style="margin-top: 36px;width: 18rem;border:none;">
+                        <img style="padding:24px;" class="card-img-top" src="/assets/pc_1.png">
+                        <div class="card-body">
+                            <h5 style="margin-bottom:16px;" class="card-title">@ProductListingModel.GetProductTitle(product, Model)</h5>
+                            <span style="font-family:Roboto;font-size:20px;margin-right:16px;">Kaina:</span>
+                            <span class="product-price">€ @product.Price</span>
+                            <div style="margin-top:4px;font-family:Roboto;">Kiekis: 1</div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</body>

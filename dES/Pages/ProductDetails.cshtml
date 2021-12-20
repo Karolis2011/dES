@@ -1,0 +1,31 @@
+﻿@page
+@model dES.Pages.ProductDetailsModel
+@{
+}
+@RouteData.Values["productId"]
+@RouteData.Values["title"]
+
+<div class="row pt-4">
+    <div class="col-6">
+        <img src="~/assets/pc_1.png" style={{ height="256px" }} />
+    </div>
+    <div class="col-5">
+        <h4> @Model.Title</h4>
+        <div class="product-price">€ @Model.Product.Price</div>
+        <ul style="padding-left: 30px;margin-top:10px;font-size:18px;">
+            <li>
+                @Model.GetProc().Name @Model.GetProc().Frequency @Model.GetProc().Cores branduoliai
+            </li>
+            <li>
+                @Model.GetOS().Name
+            </li>
+            <li>
+                @Model.GetRAM().MemoryCapacity @Model.GetRAM().Frequency RAM
+            </li>
+        </ul>
+        <div style="margin-top:40px;" class="w-50">
+            <a asp-page="/ShoppingCart" class="btn btn-primary btn-lg btn-block">Į krepšelį</a>
+        </div>
+
+    </div>
+</div>

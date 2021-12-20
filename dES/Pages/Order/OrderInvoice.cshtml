@@ -2,7 +2,26 @@
 @model dES.Pages.Order.OrderInvoiceModel
 @{
 }
+@RouteData.Values["orderID"]
 <div class="text-center">
-    <h1 class="display-4">Invoice</h1>
+    <h1 class="display-4">Sąskaita faktūra</h1>
 </div>
-<a class="nav-link text-dark" asp-area="" asp-page="/Index">Main</a>
+
+<div class="row pt-4">
+    <div class="col-5">
+        <div class="product-price">€ @Model.Payment.Ammount</div>
+        <ul style="padding-left: 30px;margin-top:10px;font-size:18px;">
+            <li>
+                @Model.Payment.Ammount @Model.Payment.Method @Model.Payment.OrderId branduoliai
+            </li>
+            <li>
+                @Model.Payment.Id
+            </li>
+        </ul>
+        <div style="margin-top:40px;" class="w-50">
+            <a asp-page="/Order/OrderList" class="btn btn-primary btn-lg btn-block">To OrderList</a>
+        </div>
+
+    </div>
+</div>
+<a class="nav-link text-dark" asp-area="" asp-page="/Order/OrderList">Order List</a>
