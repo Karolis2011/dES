@@ -10,7 +10,7 @@
         <img src="~/assets/pc_1.png" style={{ height="256px" }} />
     </div>
     <div class="col-5">
-        <h4> @Model.Title</h4>
+        <h4> @Model.Product.Title</h4>
         <div class="product-price">€ @Model.Product.Price</div>
         <ul style="padding-left: 30px;margin-top:10px;font-size:18px;">
             <li>
@@ -24,7 +24,9 @@
             </li>
         </ul>
         <div style="margin-top:40px;" class="w-50">
-            <a asp-page="/ShoppingCart" class="btn btn-primary btn-lg btn-block">Į krepšelį</a>
+            <form method="post">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Į krepšelį</button>
+            </form>
         </div>
 
     </div>

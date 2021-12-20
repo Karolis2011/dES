@@ -4,58 +4,68 @@ using System.Linq;
 using System.Threading.Tasks;
 using dES.Data;
 using dES.Data.Model;
+using dES.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace dES.Pages
 {
     public class ProductDetailsModel : PageModel
     {
         public readonly dESContext context;
+        private readonly CartService _cartService;
         public Product Product { get; set; }
-        public string Title { get; set; }
         
-        public ProductDetailsModel(dESContext context)
+        public ProductDetailsModel(dESContext context, CartService cartService)
         {
             this.context = context;
-
+            _cartService = cartService;
         }
 
-        public void OnGet(string productId, string title)
+        public void OnGet(int productId)
         {
-            Title = title;
-            Product = context.Products.Find(int.Parse(productId));
+            Product = context.Products
+                .Include(p => p.Laptop)
+                .ThenInclude(l => l.Brand)
+                .Include(p => p.Laptop)
+                .ThenInclude(l => l.Processor)
+                .Include(p => p.Laptop)
+                .ThenInclude(l => l.OS)
+                .Include(p => p.Laptop)
+                .ThenInclude(l => l.RAM)
+                .FirstOrDefault(p => p.Id == productId);
+        }
+
+        public IActionResult OnPost(int productId)
+        {
+            var cart = _cartService.GetShopingCart();
+            cart.Items.Add(context.Products.Find(productId));
+            _cartService.SaveShopingCart();
+            return Redirect("/ShoppingCart");
         }
         public Brand GetBrand()
         {
-            var laptop = GetLaptop();
-
-            return context.Brands.Find(laptop.BrandId);
+            return GetLaptop().Brand;
         }
 
         public Data.Model.OperatingSystem GetOS()
         {
-            var laptop = GetLaptop();
-
-            return context.OperatingSystems.Find(laptop.OSId);
+            return GetLaptop().OS;
         }
 
         public RAM GetRAM()
         {
-            var laptop = GetLaptop();
-
-            return context.RAMs.Find(laptop.RAMId);
+            return GetLaptop().RAM;
         }
 
         public Processor GetProc()
         {
-            var laptop = GetLaptop();
-            return context.Processors.Find(laptop.ProcessorId);
+            return GetLaptop().Processor;
         }
         public Laptop GetLaptop()
         {
-            int laptopId = Product.LaptopId;
-            return context.Laptops.Find(laptopId);
+            return Product.Laptop;
         }
     }
 }

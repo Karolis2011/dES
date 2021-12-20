@@ -244,12 +244,6 @@ namespace dES.Migrations
                     b.Property<int>("ProcessorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("RAMId")
                         .HasColumnType("int");
 
@@ -260,8 +254,6 @@ namespace dES.Migrations
                     b.HasIndex("OSId");
 
                     b.HasIndex("ProcessorId");
-
-                    b.HasIndex("ProductId1");
 
                     b.HasIndex("RAMId");
 
@@ -373,6 +365,9 @@ namespace dES.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LaptopId")
+                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -593,10 +588,6 @@ namespace dES.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("dES.Data.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1");
-
                     b.HasOne("dES.Data.Model.RAM", "RAM")
                         .WithMany("Laptops")
                         .HasForeignKey("RAMId")
@@ -608,8 +599,6 @@ namespace dES.Migrations
                     b.Navigation("OS");
 
                     b.Navigation("Processor");
-
-                    b.Navigation("Product");
 
                     b.Navigation("RAM");
                 });
@@ -634,6 +623,17 @@ namespace dES.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("dES.Data.Model.Product", b =>
+                {
+                    b.HasOne("dES.Data.Model.Laptop", "Laptop")
+                        .WithOne("Product")
+                        .HasForeignKey("dES.Data.Model.Product", "LaptopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Laptop");
                 });
 
             modelBuilder.Entity("dES.Data.Model.ProductOrder", b =>
@@ -670,6 +670,11 @@ namespace dES.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("dES.Data.Model.Laptop", b =>
+                {
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("dES.Data.Model.Order", b =>

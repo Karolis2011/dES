@@ -24,9 +24,6 @@ a {
     border-color: #1861ac;
 }
 
-.row {
-    column-gap: 30px;
-}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -126,7 +123,6 @@ body {
     padding: 0px 16px;
     border: 0.5px solid #ababab;
     font-size: 20px;
-    font-family: 'Open Sans';
     font-weight: 600;
     color: #202020;
 }
@@ -141,7 +137,6 @@ body {
     padding-top: 20px;
     font-size: 20px;
     margin-bottom: 8px;
-    font-family: 'Open Sans';
     font-weight: 800;
     color: #202020;
 }
@@ -168,14 +163,12 @@ body {
 
 .Subtotal {
     font-size: 20px;
-    font-family: 'Open Sans';
     font-weight: 700;
     color: #202020;
 }
 
 .items {
     font-size: 16px;
-    font-family: 'Open Sans';
     font-weight: 500;
     color: #909090;
     line-height: 10px;
@@ -185,21 +178,17 @@ body {
     color: #f34e46 !important;
     margin-left: 48px;
     font-size: 20px;
-    font-family: 'Open Sans';
     font-weight: 900;
     color: #202020;
 }
 
 .product-price {
-    color: #f34e46 !important;
+    color: #f34e46;
     font-size: 20px;
-    font-family: Roboto;
-    font-weight: 900;
-    color: #202020;
+    font-weight: 700;
 }
 
 .btn-primary {
-    font-family: Roboto;
     color: white;
     margin-top: 16px;
     background-color: #00968A !important;
@@ -253,7 +242,6 @@ body {
     padding: 0px 16px;
     border: 0.5px solid #ababab;
     font-size: 20px;
-    font-family: 'Open Sans';
     font-weight: 600;
     color: #202020;
 }
@@ -268,7 +256,6 @@ body {
     padding-top: 20px;
     font-size: 20px;
     margin-bottom: 8px;
-    font-family: 'Open Sans';
     font-weight: 800;
     color: #202020;
 }
@@ -295,14 +282,12 @@ body {
 
 .Subtotal {
     font-size: 20px;
-    font-family: 'Open Sans';
     font-weight: 700;
     color: #202020;
 }
 
 .items {
     font-size: 16px;
-    font-family: 'Open Sans';
     font-weight: 500;
     color: #909090;
     line-height: 10px;
@@ -312,20 +297,11 @@ body {
     color: #f34e46 !important;
     margin-left: 48px;
     font-size: 20px;
-    font-family: 'Open Sans';
-    font-weight: 900;
-    color: #202020;
-}
-.product-price {
-    color: #f34e46 !important;
-    font-size: 20px;
-    font-family: Roboto;
     font-weight: 900;
     color: #202020;
 }
 
 .btn-primary {
-    font-family:Roboto;
     color:white;
     margin-top: 16px;
     background-color: #00968A !important;

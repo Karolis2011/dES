@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace dES.Data.Model
 {
@@ -20,6 +21,10 @@ namespace dES.Data.Model
         public virtual HashSet<ProductOrder> ProductOrders { get; set; }
         public virtual HashSet<ProductReview> Reviews { get; set; }
         public virtual int LaptopId { get; set; }
+        public virtual Laptop Laptop { get; set; }
+
+        [NotMapped]
+        public string Title => $"{Laptop?.Brand?.Name} {Name} {Laptop?.Processor?.Name} {Laptop?.Processor?.Frequency}";
 
     }
 }

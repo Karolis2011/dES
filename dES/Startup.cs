@@ -47,6 +47,7 @@ namespace dES
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            services.AddScoped<CartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +68,7 @@ namespace dES
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
